@@ -20,6 +20,18 @@ SELECT productline, sum(sales) as total_sales
 FROM sales_data s
 GROUP BY productline
 
+# Total Sales for 2003 for each productline in the United States
+With filtered_data as (
+Select sum(sales) as revenue, productline
+from sales_data
+Where YEAR_ID = 2003
+AND
+Country = 'USA'
+GROUP BY productline
+)
+
+Select productline, revenue
+from filtered_data
 
 # Total sales, Average sales, variance and standard deviation for productline
 SELECT
